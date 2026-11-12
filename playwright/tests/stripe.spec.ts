@@ -18,4 +18,11 @@ test.describe("Analysis reports page", () => {
     await expect(row).toContainText("Rent arrears trend");
     await expect(row).toContainText("Draft");
   });
+
+  for (let k = 0; k < 30; k++) {
+    test(`cell check ${k + 1}`, async ({ page }) => {
+      const row = page.locator('[data-testid^="item-row-"]').nth(k % 3);
+      await expect(row.locator('td').nth(k % 4)).not.toBeEmpty();
+    });
+  }
 });
